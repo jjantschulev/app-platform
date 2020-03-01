@@ -1,0 +1,11 @@
+{
+  "domains": [
+    {
+      "domain": "pi.ausjan.com",
+      "email": "j.jantschulev@gmail.com",
+      "https": false
+    }
+  ],
+  "applications": [],
+  "sessions": []
+}

@@ -1,0 +1,54 @@
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    box-sizing: border-box;   
+}
+
+.box {
+    background-color:#161F27;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.divider {
+    margin: 10px 0;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #496C8A;
+}
+
+/* TAGS */
+
+.tag {
+    background-color:#202B38;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+
+/* BUTTONS */
+
+.primary {
+    background-color: #449AFF;
+    font-weight: bold;
+    color: #161F27;
+}
+
+.primary:hover {
+    background-color: #4383CF;
+}
+
+.danger {
+    background-color: rgb(255, 57, 50);
+    font-weight: bold;
+    color: #161F27;
+}
+
+.danger:hover {
+    background-color: rgb(214, 54, 33);
+}

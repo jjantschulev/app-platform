@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+!(load ../parts/head domains)
+
+<body>
+    !(load ../parts/navigation)
+    <h1>Edit Domain</h1>
+    !(load ../parts/error $error)
+    <form action="/domains/edit/!(body.domain)" method="post">
+        <label for="domain">Domain Name (Or Subdomain)</label>
+        <input id='domain' name="domain" type="text" placeholder="Domain" value="!(body.domain)" disabled>
+
+        <div style="height: 15px;"></div>
+        <input id="https" name="https" type="checkbox" />
+        <label for="https">Enable HTTPS (Auto generates certificate)</label>
+        <div style="height: 15px;"></div>
+
+        <label for="email">Your Email (Used for letencrypt certificate generation)</label>
+        <input id='email' name='email' type='email' value="!(body.email)" />
+
+        <!-- <label for="type">Type of application</label>
+        <select id='type' name="type" value="!(body.type)">
+            <option value="reverse-proxy">Reverse Proxy</option>
+            <option value="static">Static Files</option>
+        </select>
+        <label for="staticFileUrl">File path for static files</label>
+        <input id='staticFileUrl' name='staticFileUrl' type='text' value="!(body.staticFileUrl)" /> -->
+
+        <div class="divider"></div>
+        <button class="primary" type="submit">Save</button>
+    </form>
+    <form method="POST" action="/domains/delete/!(body.domain)">
+        <button class="danger" type="submit">Delete</button>
+    </form>
+    <a href="/domains"><button>Cancel</button></a>
+
+
+</body>
+
+</html>
