@@ -1,4 +1,4 @@
 node_modules/
 .env
-database/
 projects/
+data/database.json

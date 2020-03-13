@@ -2,10 +2,63 @@
   "domains": [
     {
       "domain": "pi.ausjan.com",
+      "https": true,
       "email": "j.jantschulev@gmail.com",
-      "https": false
+      "apps": [
+        {
+          "name": "Garage Door",
+          "uri": "/door/",
+          "url": "http://localhost:5000/"
+        },
+        {
+          "name": "App Platform",
+          "uri": "/app-platform/",
+          "url": "http://localhost:31413/"
+        }
+      ]
     }
   ],
   "applications": [],
-  "sessions": []
+  "sessions": [
+    {
+      "sessionId": "0d7dbb7b41fcc522f036723ab108ea0b4092a4dcc174e25201d432fbc845986a",
+      "expiry": 1583199689791
+    },
+    {
+      "sessionId": "3b9abac5e04be0771b815d8e0df6e8b694ff7ee41543256d78239dc8e7162fd9",
+      "expiry": 1583202782865
+    },
+    {
+      "sessionId": "3d3f6941eb0c88db319490ea33b6e8204324c2f99ed3772b5f6352172f1eccd5",
+      "expiry": 1583404023358
+    },
+    {
+      "sessionId": "fd0cecdf156aeb12ef853f5d8f363e49a3ec63873bce63405d139290acda67e5",
+      "expiry": 1583406876320
+    },
+    {
+      "sessionId": "7089fab1a2574831d238bcbb464057458bc13e2c366ca7ca08eadfa5ca0769ec",
+      "expiry": 1584082517398
+    },
+    {
+      "sessionId": "1c987a7a72ad273f516b323ac9015bc0c9f7eb286532b974c892b674fc6c8e35",
+      "expiry": 1584087672400
+    },
+    {
+      "sessionId": "098a8ffff6a2312362d523647d794b84fabcaf2a492fef8c288cdd8a3612f8ff",
+      "expiry": 1584089517638
+    },
+    {
+      "sessionId": "51f4ec86a15bf5570e78e7d27ad1abd132addf3b8bbbef11d17cfe1d9baab7e6",
+      "expiry": 1584091805901
+    },
+    {
+      "sessionId": "4e17e4def71060ccae8abc4b6dca6014e943c1e12e3e7839f3308a44d8af3ca9",
+      "expiry": 1584102010106
+    },
+    {
+      "sessionId": "842837c681833a4ed10c62a96fda041c55347477941ef84537637c6ffee932c9",
+      "expiry": 1584102286345
+    }
+  ]
 }

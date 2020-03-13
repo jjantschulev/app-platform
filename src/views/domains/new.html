@@ -6,25 +6,22 @@
     !(load ../parts/navigation)
     <h1>New Domain</h1>
     !(load ../parts/error $error)
-    <form action="/domains/new" method="post">
-        <div class="divider"></div>
+    <form action="/app-platform/domains/new" method="post">
         <label for="domain">Enter Domain Name (Or Subdomain)</label>
         <input id='domain' name="domain" type="text" placeholder="Enter Domain" value="!(body.domain)">
 
-        <div class="divider"></div>
         <div style="height: 8px;"></div>
         <input id="https" name="https" type="checkbox" />
-        <label for="https">Enable HTTPS (Auto generates certificate)</label>
+        <label for="https">Enable HTTPS</label>
         <div style="height: 8px;"></div>
 
-        <div class="divider"></div>
         <label for="email">Your Email (Used for letencrypt certificate generation)</label>
         <input id='email' name='email' type='email' value="!(body.email)" />
 
         <div class="divider"></div>
         <button class="primary" type="submit">Submit</button>
     </form>
-    <a href="/domains"><button>Cancel</button></a>
+    <a href="/app-platform/domains"><button>Cancel</button></a>
 
 </body>
 

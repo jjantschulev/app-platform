@@ -7,14 +7,21 @@
 	<h1>Domains</h1>
 
 	!(for d in domains)
-	<a href="/domains/edit/!(d.domain)">
+	<a href="/app-platform/domains/edit/!(d.domain)">
 		<div class="box">
 			!(d.domain) !(if d.https) <span class="tag primary">HTTPS</span> !(else) <span class="tag">HTTP</span> !/
+			<div>
+				<ul>
+					!(for app in d.apps)
+					<li>!(app.name)</li>
+					!/
+				</ul>
+			</div>
 		</div>
 	</a>
 	!/
 
-	<a href="/domains/new"><button>New Domain</button></a>
+	<a href="/app-platform/domains/new"><button>New Domain</button></a>
 
 </body>
 

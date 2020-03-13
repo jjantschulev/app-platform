@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
 			const expiry = (new Date()).getTime() + 1000 * 60 * 30;
 			db.get('sessions').push({ sessionId, expiry }).write();
 			res.cookie('id', sessionId, { expire: expiry });
-			res.redirect('/');
+			res.redirect('/app-platform/');
 		} else {
 			res.send(renderPage('login', { error: "Incorrect Username or Password" }));
 		}
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 
 router.get('/logout/', isAuthenticated, (req, res) => {
 	db.get('sessions').remove({ sessionId: req.sessionId }).write();
-	res.redirect('/auth/');
+	res.redirect('/app-platform/auth/');
 });
 
 function isAuthenticated(req, res, next) {
@@ -36,7 +36,7 @@ function isAuthenticated(req, res, next) {
 		req.sessionId = req.cookies.id;
 		next();
 	} else {
-		res.redirect('/auth/')
+		res.redirect('/app-platform/auth/')
 	}
 }
 
@@ -44,7 +44,7 @@ function isNotAuthenticated(req, res, next) {
 	if (!authed(req)) {
 		next();
 	} else {
-		res.redirect('/')
+		res.redirect('/app-platform/')
 	}
 }
 

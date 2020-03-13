@@ -6,13 +6,13 @@
     !(load ../parts/navigation)
     <h1>Edit Domain</h1>
     !(load ../parts/error $error)
-    <form action="/domains/edit/!(body.domain)" method="post">
+    <form action="/app-platform/domains/edit/!(body.domain)" method="post">
         <label for="domain">Domain Name (Or Subdomain)</label>
         <input id='domain' name="domain" type="text" placeholder="Domain" value="!(body.domain)" disabled>
 
         <div style="height: 15px;"></div>
-        <input id="https" name="https" type="checkbox" />
-        <label for="https">Enable HTTPS (Auto generates certificate)</label>
+        <input id="https" name="https" type="checkbox" !(if body.https)checked!/ />
+        <label for=" https">Enable HTTPS</label>
         <div style="height: 15px;"></div>
 
         <label for="email">Your Email (Used for letencrypt certificate generation)</label>
@@ -29,11 +29,35 @@
         <div class="divider"></div>
         <button class="primary" type="submit">Save</button>
     </form>
-    <form method="POST" action="/domains/delete/!(body.domain)">
-        <button class="danger" type="submit">Delete</button>
+    <form method="POST" action="/app-platform/domains/delete/!(body.domain)">
+        <button class="danger" type="submit">Delete Domain</button>
     </form>
-    <a href="/domains"><button>Cancel</button></a>
+    <a href="/app-platform/domains"><button>Go Back</button></a>
 
+
+    <h3>Manage Applications on Domain</h3>
+
+    <h4>Create new App</h4>
+    <form action="/app-platform/domains/!(body.domain)/apps/new" method="POST">
+        <input type="text" name="name" placeholder="Enter Name" />
+        <input type="text" name="uri" placeholder="Enter Uri" />
+        <input type="text" name="url" placeholder="Enter Redirect URL" />
+        <button class="primary" type="submit">Create</button>
+    </form>
+
+    !(for app in body.apps)
+    <div style="margin: 10px 0; border-radius: 5px; padding: 10px; border: 2px solid #161F27;">
+        <form action="/app-platform/domains/!(body.domain)/apps/edit/!(app.name)" method="post">
+            <input type="text" name="name" placeholder="Enter Name" value="!(app.name)" />
+            <input type="text" name="uri" placeholder="Enter Uri" value="!(app.uri)" />
+            <input type="text" name="url" placeholder="Enter Redirect URL" value="!(app.url)" />
+            <button class="primary" type="submit">Update</button>
+        </form>
+        <form method="POST" action="/app-platform/domains/!(body.domain)/apps/delete/!(app.name)/">
+            <button class="danger" type="submit">Delete</button>
+        </form>
+    </div>
+    !/
 
 </body>
 
