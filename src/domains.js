@@ -33,12 +33,12 @@ router.post("/new", isAuthenticated, (req, res) => {
 			apps: [],
 		}
 		db.get('domains').push(newDomain).write();
+		res.redirect('/app-platform/domains');
 		if (body.https) {
 			updateHttpsForDomain(body.domain).then(res => updateNginxConfig());
 		} else {
 			updateNginxConfig();
 		}
-		res.redirect('/app-platform/domains');
 	} catch (error) {
 		res.send(renderPage('domains/new', { body, error: error.message }));
 	}
@@ -65,12 +65,12 @@ router.post('/edit/:domain', isAuthenticated, (req, res) => {
 			.find({ domain: req.params.domain })
 			.assign({ https: newHttps, email: body.email })
 			.write();
+		res.redirect('/app-platform/domains');
 		if (currentHttps != newHttps && newHttps === true) {
 			updateHttpsForDomain(req.params.domain).then(res => updateNginxConfig());
 		} else {
 			updateNginxConfig();
 		}
-		res.redirect('/app-platform/domains');
 	} catch (error) {
 		res.send(renderPage('domains/edit', { body, error: error.message }));
 	}
@@ -80,9 +80,11 @@ router.post('/delete/:domain', isAuthenticated, (req, res) => {
 	const body = db.get('domains').find({ domain: req.params.domain }).value();
 	if (body) {
 		db.get('domains').remove({ domain: body.domain }).write();
+		res.redirect('/app-platform/domains');
 		updateNginxConfig();
+	} else {
+		res.redirect('/app-platform/domains');
 	}
-	res.redirect('/app-platform/domains');
 });
 
 // APP Management
@@ -93,15 +95,15 @@ router.post('/:domain/apps/new', (req, res) => {
 	if (uri[uri.length - 1] !== '/') uri = uri + "/";
 	if (url[url.length - 1] !== '/') url = url + "/";
 	db.get('domains').find({ domain: req.params.domain }).get('apps').push({ name, uri, url }).write();
-	updateNginxConfig();
 	res.redirect("/app-platform/domains/edit/" + req.params.domain);
+	updateNginxConfig();
 });
 
 router.post("/:domain/apps/delete/:name", (req, res) => {
 	const { name, domain } = req.params;
 	db.get('domains').find({ domain }).get('apps').remove({ name }).write();
-	updateNginxConfig();
 	res.redirect("/app-platform/domains/edit/" + domain);
+	updateNginxConfig();
 });
 
 router.post("/:domain/apps/edit/:name", (req, res) => {
@@ -111,8 +113,8 @@ router.post("/:domain/apps/edit/:name", (req, res) => {
 	if (uri[uri.length - 1] !== '/') uri = uri + "/";
 	if (url[url.length - 1] !== '/') url = url + "/";
 	db.get('domains').find({ domain }).get('apps').find({ name: oldName }).assign({ name, uri, url }).write();
-	updateNginxConfig();
 	res.redirect("/app-platform/domains/edit/" + domain);
+	updateNginxConfig();
 });
 
 

@@ -16,6 +16,12 @@
           "url": "http://localhost:31413/"
         }
       ]
+    },
+    {
+      "domain": "anu.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": []
     }
   ],
   "applications": [],
