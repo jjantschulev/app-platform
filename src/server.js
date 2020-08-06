@@ -8,13 +8,9 @@ const renderPage = require("./util/renderPage");
 const { router: authRouter, isAuthenticated } = require('./auth');
 const domainRouter = require('./domains');
 
-app.use((req, res, next) => {
-	// if(console.log(req.cookies));
-	next();
-});
-app.use('/static/', express.static(path.join(__dirname, 'static')));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/static/', express.static(path.join(__dirname, 'static')));
 app.use('/auth/', authRouter);
 app.use('/domains/', domainRouter);
 

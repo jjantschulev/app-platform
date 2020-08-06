@@ -1,61 +1,62 @@
 const express = require("express");
-const crypto = require("crypto");
+const axios = require("axios").default;
+const jwt = require("jsonwebtoken");
 const router = express.Router();
-const renderPage = require("./util/renderPage");
-const db = require('./util/database');
 
-router.get('/', isNotAuthenticated, (req, res) => {
-	res.send(renderPage('login'));
-})
+router.get("/token", (req, res) => {
+	const { token, maxAge } = req.query;
+	res.cookie('token', token, {
+		maxAge: parseInt(maxAge, 10),
+		sameSite: true,
+		httpOnly: true,
+		secure: true,
+		path: "/app-platform/",
+	});
+	res.redirect("/app-platform/");
+});
 
-router.post('/', (req, res) => {
-	try {
-		const { username, password } = req.body;
-		const passwordHash = crypto.pbkdf2Sync(password, Buffer.from(process.env.SALT), 10000, 32, 'sha256').toString('hex');
-		if (username === process.env.USERNAME && passwordHash === process.env.PASSWORD_HASH) {
-			const sessionId = crypto.randomBytes(32).toString('hex');
-			const expiry = (new Date()).getTime() + 1000 * 60 * 30;
-			db.get('sessions').push({ sessionId, expiry }).write();
-			res.cookie('id', sessionId, { expire: expiry });
-			res.redirect('/app-platform/');
-		} else {
-			res.send(renderPage('login', { error: "Incorrect Username or Password" }));
+
+async function isAuthenticated(req, res, next) {
+	const headerToken = req.headers["x-auth-token"];
+	const userToken = req.cookies.token;
+	if (headerToken) {
+		try {
+			const { data } = await axios.post("https://idp.ausjan.com/api/verify-token-access/", {
+				clientId: process.env.CLIENT_ID,
+				clientSecret: process.env.CLIENT_SECRET,
+				token: headerToken,
+			});
+			req.accessScopes = data.scopes;
+			req.user = data.user
+			next();
+		} catch (error) {
+			const { data } = await axios.get("https://idp.ausjan.com/api/unauthorized");
+			res.send(data);
 		}
-	} catch (error) {
-		res.send(renderPage('login', { error: "An error has occurred" }));
-	}
-});
-
-router.get('/logout/', isAuthenticated, (req, res) => {
-	db.get('sessions').remove({ sessionId: req.sessionId }).write();
-	res.redirect('/app-platform/auth/');
-});
-
-function isAuthenticated(req, res, next) {
-	if (authed(req)) {
-		req.sessionId = req.cookies.id;
-		next();
 	} else {
-		res.redirect('/app-platform/auth/')
-	}
-}
-
-function isNotAuthenticated(req, res, next) {
-	if (!authed(req)) {
-		next();
-	} else {
-		res.redirect('/app-platform/')
-	}
-}
-
-function authed(req) {
-	const sessionId = req.cookies.id;
-	if (!sessionId) return false;
-	const session = db.get('sessions').find({ sessionId }).value();
-	if (session && (new Date()).getTime() < session.expiry) {
-		return true;
-	} else {
-		return false;
+		try {
+			let decoded;
+			try {
+				decoded = jwt.verify(userToken, process.env.CLIENT_SECRET);
+			} catch (error) {
+				throw "jwt-error";
+			}
+			req.user = decoded;
+			const { data } = await axios.post("https://idp.ausjan.com/api/verify-user-access/", {
+				clientId: process.env.CLIENT_ID,
+				clientSecret: process.env.CLIENT_SECRET,
+				userId: decoded.id,
+			});
+			req.accessScopes = data.scopes;
+			next();
+		} catch (error) {
+			if (error === "jwt-error") {
+				res.redirect(`https://idp.ausjan.com/api/get-id-token?client_id=${process.env.CLIENT_ID}`)
+			} else {
+				const { data } = await axios.get("https://idp.ausjan.com/api/unauthorized");
+				res.send(data);
+			}
+		}
 	}
 }
 

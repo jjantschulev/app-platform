@@ -89,7 +89,7 @@ router.post('/delete/:domain', isAuthenticated, (req, res) => {
 
 // APP Management
 
-router.post('/:domain/apps/new', (req, res) => {
+router.post('/:domain/apps/new', isAuthenticated, (req, res) => {
 	let { name, uri, url } = req.body;
 	if (uri[0] !== '/') uri = "/" + uri;
 	if (uri[uri.length - 1] !== '/') uri = uri + "/";
@@ -99,14 +99,14 @@ router.post('/:domain/apps/new', (req, res) => {
 	updateNginxConfig();
 });
 
-router.post("/:domain/apps/delete/:name", (req, res) => {
+router.post("/:domain/apps/delete/:name", isAuthenticated, (req, res) => {
 	const { name, domain } = req.params;
 	db.get('domains').find({ domain }).get('apps').remove({ name }).write();
 	res.redirect("/app-platform/domains/edit/" + domain);
 	updateNginxConfig();
 });
 
-router.post("/:domain/apps/edit/:name", (req, res) => {
+router.post("/:domain/apps/edit/:name", isAuthenticated, (req, res) => {
 	const { name: oldName, domain } = req.params;
 	let { name, uri, url } = req.body;
 	if (uri[0] !== '/') uri = "/" + uri;
