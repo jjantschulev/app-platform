@@ -22,4 +22,4 @@ app.get("/", isAuthenticated, (req, res) => {
 	res.send(renderPage('main'));
 });
 
-app.listen(31413);
+app.listen(31413, () => console.log("app-platform running on port 31413"));

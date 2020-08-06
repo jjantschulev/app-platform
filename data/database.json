@@ -8,22 +8,185 @@
         {
           "name": "Garage Door",
           "uri": "/door/",
-          "url": "http://localhost:5000/"
+          "url": "http://localhost:5001/"
         },
         {
           "name": "App Platform Access",
           "uri": "/app-platform/",
           "url": "http://localhost:31413/"
+        },
+        {
+          "name": "Waker",
+          "uri": "/waker/",
+          "url": "http://localhost:3004/"
+        },
+        {
+          "name": "dexter-sleep",
+          "uri": "/kai/dexter-sleep/",
+          "url": "http://192.168.1.222:57634/"
+        },
+        {
+          "name": "pc-tv-sleep",
+          "uri": "/kai/pc-tv-sleep/",
+          "url": "http://192.168.1.218:57634/"
+        },
+        {
+          "name": "Minimal Transfers",
+          "uri": "/transfers/",
+          "url": "http://localhost:4005/"
+        },
+        {
+          "name": "Media Server",
+          "uri": "/media/",
+          "url": "http://localhost:4006/"
         }
       ]
     },
     {
-      "domain": "anu.ausjan.com",
+      "domain": "tankx.jantschulev.ml",
       "https": true,
       "email": "j.jantschulev@gmail.com",
-      "apps": []
+      "apps": [
+        {
+          "name": "tanks-distribution-server",
+          "uri": "/",
+          "url": "http://localhost:6005/"
+        }
+      ]
+    },
+    {
+      "domain": "piano.ausjan.com",
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "piano",
+          "uri": "/",
+          "url": "http://192.168.1.3:6002/"
+        }
+      ]
+    },
+    {
+      "domain": "tankx.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "main",
+          "uri": "/",
+          "url": "http://localhost:6005/"
+        }
+      ]
+    },
+    {
+      "domain": "listserver.tankx.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "main",
+          "uri": "/",
+          "url": "http://127.0.0.1:3013/"
+        }
+      ]
+    },
+    {
+      "domain": "idp.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "Main",
+          "uri": "/",
+          "url": "http://localhost:4000/"
+        }
+      ]
+    },
+    {
+      "domain": "photos.ausjan.com",
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "MainServer",
+          "uri": "/",
+          "url": "http://localhost:3003/"
+        }
+      ],
+      "https": true
     }
   ],
   "applications": [],
-  "sessions": []
+  "sessions": [
+    {
+      "sessionId": "b866deac874f548893fb87d1262a81f129fd4ed0205d3c3cbfa0e2f604bd6b3c",
+      "expiry": 1595930656995
+    },
+    {
+      "sessionId": "f48397a3e983f0e717ea64727797a497dfc2fa9caa4ae6c1a6be1db53fc1bd03",
+      "expiry": 1595931335068
+    },
+    {
+      "sessionId": "0cf9272c69a4889ba29fe63e7019806c9573d2936be3558fe2f40ece31e390fb",
+      "expiry": 1595933979524
+    },
+    {
+      "sessionId": "3765007b3265c8baeee2cc953b6fc938c1449968467fdb5b88182733e6c42756",
+      "expiry": 1595942387212
+    },
+    {
+      "sessionId": "7dab4c950f9e1de06a510804d92eecdc82b3774521913bd240bff51f99734efb",
+      "expiry": 1595945657659
+    },
+    {
+      "sessionId": "96a072b2a10608873a739edc06e3644e228cc5759626a90ab2b3700ae5605eb7",
+      "expiry": 1595985470813
+    },
+    {
+      "sessionId": "46df2009c2f42f596e84672797094280fd9437028c26e6408e0d204da6345a28",
+      "expiry": 1596109374056
+    },
+    {
+      "sessionId": "6971a1e134a377461fcccf1c6d0766c7fa26f87a02bc2eceb24b406b0cb89ab4",
+      "expiry": 1596345557408
+    },
+    {
+      "sessionId": "7965e3169a9ec64d03850455755d8e0e3fe02ef44abeb2a1a8978ca7db3adaaf",
+      "expiry": 1596347839592
+    },
+    {
+      "sessionId": "b628988ed9289edcffeebc66ccd640ae585f109ed010ed31913530e801419920",
+      "expiry": 1596354369529
+    },
+    {
+      "sessionId": "9745fac0b62fc58e98186521386b94739bea0e0df1b0db13eb1b0dd7d45ea7b5",
+      "expiry": 1596358568463
+    },
+    {
+      "sessionId": "29a27d82b3a133435a190d945b35f6a2eec99d0695175c1e326a77dc36e6a869",
+      "expiry": 1596428060876
+    },
+    {
+      "sessionId": "befec7c6749ce358ef127f6a49df37a2afe45b7f537389351f13706a092d718c",
+      "expiry": 1596442177837
+    },
+    {
+      "sessionId": "a55382886adf7db8fbf64c467e48b786dee4e21ee3dc027331bb3466700c4433",
+      "expiry": 1596457959887
+    },
+    {
+      "sessionId": "95c104f9ebafb9f314f470112353607ea4a227211ccb426dccd7525538faf718",
+      "expiry": 1596460257148
+    },
+    {
+      "sessionId": "711c825ac444f0fe8932142d80f550331b7f24562282d36141477c08f8d806ba",
+      "expiry": 1596528016720
+    },
+    {
+      "sessionId": "8b02d14ee89a1ab9487bde21cfcfb1b37e3ed4afceeb81ae2f0b6a35bd54de68",
+      "expiry": 1596700678960
+    },
+    {
+      "sessionId": "c69ce54510c5c0bdccef19bc9506a119ac5e46b5798e4905f82b31d2555c1d4d",
+      "expiry": 1596711584342
+    }
+  ]
 }
