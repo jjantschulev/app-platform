@@ -13,7 +13,14 @@ async function updateNginxConfig() {
         await removeOldFiles()
         const template = await fsp.readFile(TEMPLATE_PATH, 'utf-8');
         const data = db.get('domains').value();
-        let files = data.map(d => ({ name: d.domain + '.aps', body: fastplate(template, { ...d }) }));
+        let files = data.map(d => ({
+            ...d,
+            apps: d.apps.map(a => ({
+                ...a,
+                static: a.url.substring(0, 4) != 'http',
+                url: a.url.substring(0, 4) != 'http' ? "/home/pi/static" + a.url : a.url,
+            })),
+        })).map(d => ({ name: d.domain + '.aps', body: fastplate(template, { ...d }) }));
         let promises = files.map(async (f) => {
             const fName = path.join(CONFIG_DIR, f.name);
             await fsp.writeFile(fName, f.body);

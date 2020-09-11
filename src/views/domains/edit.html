@@ -51,6 +51,10 @@
             <input type="text" name="name" placeholder="Enter Name" value="!(app.name)" />
             <input type="text" name="uri" placeholder="Enter Uri" value="!(app.uri)" />
             <input type="text" name="url" placeholder="Enter Redirect URL" value="!(app.url)" />
+            <span>Include
+                <code>http://localhost:PORT/</code> for reverse proxy. Otherwise path to static files. Include leading
+                <code>/</code></span>
+            <div style="height: 10px;"></div>
             <button class="primary" type="submit">Update</button>
         </form>
         <form method="POST" action="/app-platform/domains/!(body.domain)/apps/delete/!(app.name)/">
