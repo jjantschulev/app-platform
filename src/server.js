@@ -7,12 +7,14 @@ const renderPage = require("./util/renderPage");
 
 const { router: authRouter, isAuthenticated } = require('./auth');
 const domainRouter = require('./domains');
+const appsRouter = require('./apps');
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/static/', express.static(path.join(__dirname, 'static')));
 app.use('/auth/', authRouter);
 app.use('/domains/', domainRouter);
+app.use('/apps/', appsRouter);
 
 app.get("/", isAuthenticated, (req, res) => {
 	res.send(renderPage('main'));

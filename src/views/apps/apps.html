@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+!(load ../parts/head apps)
+
+<body>
+    !(load ../parts/navigation)
+    <h1>Apps</h1>
+
+    !(for a in apps)
+    <div class="box" style="display: flex; justify-content: space-between;">
+        <div>
+            !(if a.error)
+            <span style="color: yellow">D</span>
+            !(else)
+            <span style="color: transparent">D</span>
+            !/
+            PORT !(a.port) -> !(a.name)
+        </div>
+        <div>
+            <a href="/app-platform/domains/edit/!(a.domain.domain)">!(a.domain.domain)!(a.uri)</a>
+        </div>
+    </div>
+    !/
+
+</body>
+
+</html>

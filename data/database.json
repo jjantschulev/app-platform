@@ -39,18 +39,36 @@
           "name": "Media Server",
           "uri": "/media/",
           "url": "http://localhost:4006/"
-        }
-      ]
-    },
-    {
-      "domain": "tankx.jantschulev.ml",
-      "https": true,
-      "email": "j.jantschulev@gmail.com",
-      "apps": [
+        },
         {
-          "name": "tanks-distribution-server",
-          "uri": "/",
-          "url": "http://localhost:6005/"
+          "name": "Storage API",
+          "uri": "/storage/",
+          "url": "http://localhost:4009/"
+        },
+        {
+          "name": "Doorbell",
+          "uri": "/doorbell/",
+          "url": "http://localhost:4010/"
+        },
+        {
+          "name": "devicedetector",
+          "uri": "/device-detector/",
+          "url": "http://localhost:5736/"
+        },
+        {
+          "name": "TelegramApi",
+          "uri": "/telegram/",
+          "url": "http://localhost:4632/"
+        },
+        {
+          "name": "Location",
+          "uri": "/location/",
+          "url": "http://localhost:5873/"
+        },
+        {
+          "name": "Camera",
+          "uri": "/camera/",
+          "url": "http://192.168.1.237:8080/"
         }
       ]
     },
@@ -112,6 +130,105 @@
         }
       ],
       "https": true
+    },
+    {
+      "domain": "ausjan.com",
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "main",
+          "uri": "/",
+          "url": "/ausjan-home/"
+        },
+        {
+          "name": "Analytics",
+          "uri": "/analytics/",
+          "url": "http://localhost:4373/"
+        },
+        {
+          "name": "Strava",
+          "uri": "/strava/",
+          "url": "http://localhost:4374/"
+        }
+      ],
+      "https": true
+    },
+    {
+      "domain": "anucyclingclub.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "main",
+          "uri": "/",
+          "url": "http://localhost:6543/"
+        }
+      ]
+    },
+    {
+      "domain": "unifi.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "Main",
+          "uri": "/",
+          "url": "https://192.168.1.2:8443/"
+        }
+      ]
+    },
+    {
+      "domain": "play.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "GameRooms",
+          "uri": "/rooms/",
+          "url": "http://localhost:9001/"
+        },
+        {
+          "name": "Main",
+          "uri": "/",
+          "url": "/ausjan-play/"
+        }
+      ]
+    },
+    {
+      "domain": "files.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "Main",
+          "uri": "/",
+          "url": "http://localhost:4064/"
+        }
+      ]
+    },
+    {
+      "domain": "eureka.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "Eureka",
+          "uri": "/",
+          "url": "http://localhost:4008/"
+        }
+      ]
+    },
+    {
+      "domain": "realbooks.ausjan.com",
+      "https": true,
+      "email": "j.jantschulev@gmail.com",
+      "apps": [
+        {
+          "name": "main",
+          "uri": "/",
+          "url": "http://localhost:6000/"
+        }
+      ]
     }
   ],
   "applications": [],
