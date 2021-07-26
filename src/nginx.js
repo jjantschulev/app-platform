@@ -7,6 +7,7 @@ const TEMPLATE_PATH = path.join(__dirname, './nginx-config/template.conf');
 const CONFIG_DIR = "/etc/nginx/sites-available/"
 const ENABLED_CONFIG_DIR = "/etc/nginx/sites-enabled/";
 const { execSync, exec } = require('child_process');
+const crypto = require("crypto");
 
 async function updateNginxConfig() {
     try {
@@ -19,7 +20,9 @@ async function updateNginxConfig() {
                 ...a,
                 static: a.url.substring(0, 4) != 'http',
                 url: a.url.substring(0, 4) != 'http' ? "/home/pi/static" + a.url : a.url,
-            })),
+                secured: a.authId && a.authId.length > 0 && a.authId != 'undefined',
+                appId: a.uri.replace(/\//g, "_") + "_uid_" + crypto.randomBytes(4).toString("hex"),
+            })).sort((a, b) => countChars('/', b.url) - countChars('/', a.url)),
         })).map(d => ({ name: d.domain + '.aps', body: fastplate(template, { ...d }) }));
         let promises = files.map(async (f) => {
             const fName = path.join(CONFIG_DIR, f.name);
@@ -80,6 +83,14 @@ function execPromise(command) {
             res(output);
         })
     });
+}
+
+function countChars(char, str) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] == char) count++;
+    }
+    return count;
 }
 
 setTimeout(() => updateHttpsForAllDomains, 864000000);

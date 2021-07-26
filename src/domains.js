@@ -90,11 +90,11 @@ router.post('/delete/:domain', isAuthenticated, (req, res) => {
 // APP Management
 
 router.post('/:domain/apps/new', isAuthenticated, (req, res) => {
-	let { name, uri, url } = req.body;
+	let { name, uri, url, authId } = req.body;
 	if (uri[0] !== '/') uri = "/" + uri;
 	if (uri[uri.length - 1] !== '/') uri = uri + "/";
 	if (url[url.length - 1] !== '/') url = url + "/";
-	db.get('domains').find({ domain: req.params.domain }).get('apps').push({ name, uri, url }).write();
+	db.get('domains').find({ domain: req.params.domain }).get('apps').push({ name, uri, url, authId }).write();
 	res.redirect("/app-platform/domains/edit/" + req.params.domain);
 	updateNginxConfig();
 });
@@ -108,11 +108,11 @@ router.post("/:domain/apps/delete/:name", isAuthenticated, (req, res) => {
 
 router.post("/:domain/apps/edit/:name", isAuthenticated, (req, res) => {
 	const { name: oldName, domain } = req.params;
-	let { name, uri, url } = req.body;
+	let { name, uri, url, authId } = req.body;
 	if (uri[0] !== '/') uri = "/" + uri;
 	if (uri[uri.length - 1] !== '/') uri = uri + "/";
 	if (url[url.length - 1] !== '/') url = url + "/";
-	db.get('domains').find({ domain }).get('apps').find({ name: oldName }).assign({ name, uri, url }).write();
+	db.get('domains').find({ domain }).get('apps').find({ name: oldName }).assign({ name, uri, url, authId }).write();
 	res.redirect("/app-platform/domains/edit/" + domain);
 	updateNginxConfig();
 });

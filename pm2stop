@@ -1,0 +1,1 @@
+sudo $(which pm2) stop app-platform
